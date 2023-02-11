@@ -1,0 +1,47 @@
+HEADING
+Housing price prediction with Lasso and Ridge regularisation technique
+Problem Statement:
+Consider a real estate company that has a dataset containing the prices of properties in the region. It wishes to use the data to optimise the sale prices of the properties based on important factors such as area, bedrooms, parking, etc.
+Fetch Data
+Here we are fetching the data from given data set.
+Drop Unnecessary
+We are eliminating the columns which statistically not much of importance.
+Find and replace Missing Data
+By using isna() we are checking for null values,if it is zero data set wont contain null values,
+If we find more than zero then we should treat by missing data treatment.
+Define X and Y
+Here we are defining Y as categorical i.e. “SalesPrice” and X as Continuous (LotShape', 'LandContour', 'Utilities', 'LotConfig', 'LandSlope').
+Seperate cat and con
+Whole dataset can be divided into Quantitative and Qualitative so that training and testing can be done properly. Using this we get proper correlation.
+Univariate: We are performing univariate analysis to see the spread of data.
+Skew: Skew represents uniformity of data as prediction . In this project we are using this method  skew().sort_values() > 0.7. if the values are greater than 0.7 they will be having skew in data, The columns with Skew can be dropped for better prediction,We use np log method to remove skew.
+
+Data Preparation
+Problem: Data has not in the form of same magnitude(0 and 1)
+	Methods for DataPreparation:
+	Categorical:ONE HOT ENCODING(get_dummies)
+	Continuous:Standardisation(standard scaler,MinMax scaler )
+Divide Data into training and testing split
+	 We split the data into training and testing sets. We train the model with 80% of the samples and test with the remaining 20%. We use random_state for selecting samples randomly. To split the data we use train_test_split function
+OLS Model
+We are performing backward elimination on the basis of p-value since p-value of a column ideally should be lesser than 0.05,means it is a good predictor.
+This adds a constant column with one value, this is done to get B0.
+If p-value decreases Adj R.Square increases.
+After performing OLS model  we will get important columns.
+Regularization :
+In multi-collinearity we get the model which is not good performer. To overcome this,  we are using Regularization techniques with penalty method( Ridge (L1)and Lasso(L2)
+To get the best model
+
+				
+In Ridge  we are applying penalty on Mean Squarred of coefficient
+In Lasso we applying  penalty on Mean Absolute Error
+We are facing a challenge to match the testing data with training data.So we are doing preprocessing on testing data.
+
+Final prediction can be done by using predicted model.
+
+
+
+
+
+       
+
